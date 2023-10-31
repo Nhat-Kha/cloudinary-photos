@@ -1,7 +1,7 @@
 import UpLoadButton from './upload-button';
 import cloudinary from 'cloudinary';
 import { CldImage } from 'next-cloudinary';
-import { CloudinaryImage } from './cloudinary-image';
+import { CloudinaryImage } from '../../components/cloudinary-image';
 import { ImageGrid } from '@/components/image-grid';
 import GalleryGrid from './gallery-grid';
 
