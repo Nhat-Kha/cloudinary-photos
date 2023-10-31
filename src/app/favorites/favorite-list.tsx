@@ -5,6 +5,7 @@ import { CloudinaryImage } from '../gallery/cloudinary-image';
 import { SearchResult } from '../gallery/page';
 import { ForceRefresh } from '@/components/force-refresh';
 import {useState, useEffect} from 'react'
+import { ImageGrid } from '@/components/image-grid';
 
 export default function FavoritesList({
     initialResources,
@@ -17,23 +18,26 @@ export default function FavoritesList({
     }, [initialResources])
 
     return (
-        <div className='grid grid-cols-4 gap-4'>
-            {resources.map((result) =>
-                <CloudinaryImage
-                    key={result.public_id}
-                    imageData={result}
-                    width="400"
-                    height="300"
-                    alt="an image of something"
-                    onUnheart={(unheartedResource) => {
-                        setResources((currentResources) => 
-                            currentResources.filter(
-                                (resources) => resources.public_id !== unheartedResource.public_id
-                            )
-                        ) 
-                    }} 
-                />
-            )}
-        </div>
+        <ImageGrid 
+            images={resources}
+            getImage={(imageData: SearchResult) => {
+                return (
+                    <CloudinaryImage
+                        key={imageData.public_id}
+                        imageData={imageData}
+                        width="400"
+                        height="300"
+                        alt="an image of something"
+                        onUnheart={(unheartedResource) => {
+                            setResources((currentResources) =>
+                                currentResources.filter(
+                                    (resources) => resources.public_id !== unheartedResource.public_id
+                                )
+                            );
+                        }} 
+                    />
+                );
+            }}
+        />
     );
 }
