@@ -7,6 +7,7 @@ import { Heart } from "@/components/icons/heart";
 import Link from "next/link";
 import cloudinary from "cloudinary";
 import { Folder } from "./albums/page";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -112,7 +113,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="border-b">
           <div className="flex h-16 items-center px-4 container mx-auto">
-            PHOTO APP
+            <Image
+              src="/clay.png"
+              width="50"
+              height="50"
+              alt="icon of this photo album app"
+              className="rounded-lg"
+            />
+            Cloudinary Photo
             <div className="ml-auto flex items-center space-x-4">
               <Avatar>
                 <AvatarImage

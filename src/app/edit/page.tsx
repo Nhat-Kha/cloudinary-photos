@@ -96,7 +96,7 @@ export default function EditPage({
               width="300"
               height="200"
               alt="some image"
-              grayscale
+              grayscale={true}
             />
           )}
           {transformation === "pixelate" && (
