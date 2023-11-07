@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { CldImage } from "next-cloudinary";
 import { useState } from "react";
 
@@ -20,6 +22,8 @@ export default function EditPage({
     | "remove-bg"
   >();
 
+  const [pendingPrompt, setPendingPrompt] = useState("");
+  const [prompt, setPrompt] = useState("");
   return (
     <section>
       <div className="flex flex-col gap-8">
@@ -34,9 +38,21 @@ export default function EditPage({
             Clear All
           </Button>
 
-          <Button onClick={() => setTransformation("generative-fill")}>
-            Apply generative Fill
-          </Button>
+          <div className="flex flex-col gap-4">
+            <Button
+              onClick={() => {
+                setTransformation("generative-fill");
+                setPrompt(pendingPrompt);
+              }}
+            >
+              Apply generative Fill
+            </Button>
+            <Label>Prompt</Label>
+            <Input
+              value={pendingPrompt}
+              onChange={(e) => setPendingPrompt(e.currentTarget.value)}
+            />
+          </div>
 
           <Button onClick={() => setTransformation("blur")}>Apply blur</Button>
           <Button onClick={() => setTransformation("grayscale")}>
@@ -56,11 +72,13 @@ export default function EditPage({
           {transformation === "generative-fill" && (
             <CldImage
               src={publicId}
-              width="300"
-              height="200"
+              width="1800"
+              height="1200"
               alt="some image"
               crop="pad"
-              fillBackground
+              fillBackground={{
+                prompt,
+              }}
             />
           )}
           {transformation === "blur" && (
