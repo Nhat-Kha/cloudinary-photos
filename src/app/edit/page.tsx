@@ -12,7 +12,12 @@ export default function EditPage({
   };
 }) {
   const [transformation, setTransformation] = useState<
-    undefined | "generative-fill" | "blur" | "grayscale" | "pixelate"
+    | undefined
+    | "generative-fill"
+    | "blur"
+    | "grayscale"
+    | "pixelate"
+    | "remove-bg"
   >();
 
   return (
@@ -39,6 +44,9 @@ export default function EditPage({
           </Button>
           <Button onClick={() => setTransformation("pixelate")}>
             pixelate
+          </Button>
+          <Button onClick={() => setTransformation("remove-bg")}>
+            remove backrgound
           </Button>
         </div>
 
@@ -82,7 +90,15 @@ export default function EditPage({
               pixelate
             />
           )}
-          
+          {transformation === "remove-bg" && (
+            <CldImage
+              src={publicId}
+              width="300"
+              height="200"
+              alt="some image"
+              removeBackground
+            />
+          )}
         </div>
       </div>
     </section>
