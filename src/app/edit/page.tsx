@@ -87,7 +87,7 @@ export default function EditPage({
               width="300"
               height="200"
               alt="some image"
-              blur="800"
+              effects={[{ blur: "800" }]}
             />
           )}
           {transformation === "grayscale" && (
@@ -96,7 +96,7 @@ export default function EditPage({
               width="300"
               height="200"
               alt="some image"
-              grayscale={true}
+              effects={[{ grayscale: true }]}
             />
           )}
           {transformation === "pixelate" && (
@@ -105,7 +105,7 @@ export default function EditPage({
               width="300"
               height="200"
               alt="some image"
-              pixelate
+              effects={[{ pixelate: true }]}
             />
           )}
           {transformation === "remove-bg" && (
