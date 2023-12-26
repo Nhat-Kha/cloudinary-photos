@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
+  output: "export",
+  images: {
+    domains: ["res.cloudinary.com"], // Replace with your Cloudinary domain
+    cloudinary: {
+      cloudName: "dkmkutpxp", // Replace with your Cloudinary cloud name
+    },
   },
-  cloudinary: {
-    cloudName: "dkmkutpxp",
+  exportPathMap: async function () {
+    return {
+      "/": { page: "/" },
+    };
   },
 };
 
